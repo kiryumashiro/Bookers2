@@ -10,8 +10,16 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user = current_user
-    @users = User.find(params[:id])
+    @user = User.find(params[:id])
+    @users = User.all
+    @book = Book.new
+    @books = @user.books
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    redirect_to book_path(book.id)
   end
 
 end
