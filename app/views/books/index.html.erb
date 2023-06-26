@@ -1,16 +1,16 @@
     <%= flash[:update] %>
     <%= flash[:create] %>
 <div class="container px-5 px-sm-0">
-  <div class="row">
-    <div class="col-md-3">
       <% if @book.errors.any? %>
-        <%= @book.errors.count %>
+        <h3><%= @book.errors.count %> error prohibited this obj from being saved:</h3>
         <ul>
           <% @book.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>
       <% end %>
+  <div class="row">
+    <div class="col-md-3">
       <%= render 'users/userinfo', user: @user %>
       <%= render 'books/newbook', book: @book %>
     </div>
@@ -28,7 +28,11 @@
         <tbody>
           <% @books.each do |book| %>
           <tr>
-            <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+            <td>
+              <%= link_to user_path(book.user) do %>
+                <%= image_tag book.user.get_profile_image(100,100) %>
+              <% end %>
+            </td>
             <td>
               <%= link_to book_path(book.id) do%>
               <%= book.title %>
