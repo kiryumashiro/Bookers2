@@ -69,7 +69,8 @@
         </div>
       </nav>
     </header>
-  <main class ="d-flex align-items-center justify-content-center">
+  <main>
+    <%= flash[:notice] %>
     <%= yield %>
   </main>
     <footer>
